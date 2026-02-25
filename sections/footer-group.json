@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_L7TRiy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/LogoCorteGaucho550x250Blanco.png",
+            "image_width": 550,
+            "alignment": "center"
+          }
+        },
+        "text_Efda9h": {
+          "type": "text",
+          "settings": {
+            "heading": "¿TIENES ALGUNA DUDA?",
+            "subtext": "<p>Estamos para ayudarte.<br/> WhatsApp: +54 911 3797 5859<br/> Email: Contacto@cortegaucho.info</p>"
+          }
+        },
+        "link_list_pdiyh7": {
+          "type": "link_list",
+          "settings": {
+            "heading": "NAVEGACIÓN",
+            "menu": "footer"
+          }
+        },
+        "link_list_VytR6B": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal",
+            "menu": "legal"
+          }
+        }
+      },
+      "block_order": [
+        "image_L7TRiy",
+        "text_Efda9h",
+        "link_list_pdiyh7",
+        "link_list_VytR6B"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "newsletter_enable": true,
+        "newsletter_heading": "Suscríbete para más novedades",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

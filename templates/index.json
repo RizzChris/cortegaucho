@@ -1,0 +1,203 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_6j6bNL": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "video_desktop": "shopify://files/videos/Horizontal.mp4",
+        "video_mobile": "shopify://files/videos/vertical.mp4",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_tpdNjr": {
+      "type": "featured-collection",
+      "name": "Destacados",
+      "settings": {
+        "collection": "cuchillos",
+        "products_to_show": 6,
+        "title": "Cuchillos",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_DcpX9h": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_eYJzV4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cuchillos"
+          }
+        },
+        "featured_collection_CYe7WG": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fundas"
+          }
+        },
+        "featured_collection_EaRqmR": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cajas-personalizadas"
+          }
+        },
+        "featured_collection_deNH7e": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hachas"
+          }
+        },
+        "featured_collection_3BrprP": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sets"
+          }
+        },
+        "featured_collection_CWxK6K": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "personalizados"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_eYJzV4",
+        "featured_collection_CYe7WG",
+        "featured_collection_EaRqmR",
+        "featured_collection_deNH7e",
+        "featured_collection_3BrprP",
+        "featured_collection_CWxK6K"
+      ],
+      "name": "Productos",
+      "settings": {
+        "title": "Productos",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collage-0": {
+      "type": "collage",
+      "blocks": {
+        "collection-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "cajas-personalizadas"
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "hachas"
+          }
+        }
+      },
+      "block_order": [
+        "collection-0",
+        "collection-1"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h2",
+        "desktop_layout": "right",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_text_JnX9wK": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_3HbB6V": {
+          "type": "heading",
+          "settings": {
+            "heading": "DESDE ARGENTINA AL CORAZÓN DE TU PARRILLA",
+            "heading_size": "h1"
+          }
+        },
+        "text_MYF8FN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Corte Gaucho nace de la tradición argentina del asado, <br/>donde cada corte es un arte. Inspirados en la colección <br/>de cuchillos artesanales de nuestro abuelo y el rancho <br/>familiar, traemos a México la auténtica experiencia <br/>del parrillero argentino.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_6FVerQ": {
+          "type": "button",
+          "settings": {
+            "button_label": "NUESTRA HISTORIA",
+            "button_link": "/pages/nuestra-historia",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_3HbB6V",
+        "text_MYF8FN",
+        "button_6FVerQ"
+      ],
+      "name": "NUESTRA HISTORIA",
+      "settings": {
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "ambient",
+        "content_layout": "overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "video_6j6bNL",
+    "featured_collection_tpdNjr",
+    "collection_list_DcpX9h",
+    "collage-0",
+    "image_with_text_JnX9wK"
+  ]
+}
