@@ -1,9 +1,10 @@
 <style>
   .announcement-marquee-wrapper {
+    position: relative;
     background-color: rgb(var(--color-background));
     overflow: hidden;
     width: 100%;
-    padding: 0.60rem 0
+    padding: 0.60rem 3rem 0.60rem 0;
   }
 
   .announcement-marquee-track {
@@ -27,13 +28,36 @@
     padding: 0 3rem;
   }
 
+  .announcement-marquee-close {
+    position: absolute;
+    top: 50%;
+    right: 0.6rem;
+    transform: translateY(-50%);
+    width: 2.2rem;
+    height: 2.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .announcement-marquee-close:hover {
+    opacity: 1;
+  }
+
   @keyframes marquee-scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 </style>
 
-<div class="announcement-marquee-wrapper color-{{ section.settings.color_scheme }} gradient">
+<div class="announcement-marquee-wrapper color-{{ section.settings.color_scheme }} gradient" id="AnnouncementMarquee-{{ section.id }}">
   <div class="announcement-marquee-track">
     {%- for i in (1..20) -%}
       <span class="announcement-marquee-item">Corte Gaucho</span>
@@ -42,7 +66,38 @@
       <span class="announcement-marquee-item">Corte Gaucho</span>
     {%- endfor -%}
   </div>
+  <button
+    type="button"
+    class="announcement-marquee-close"
+    aria-label="Cerrar anuncio"
+    data-close-announcement
+  >
+    &times;
+  </button>
 </div>
+
+<script>
+  (function () {
+    var key = 'announcement-marquee-dismissed-{{ section.id }}';
+    var wrapper = document.getElementById('AnnouncementMarquee-{{ section.id }}');
+    if (!wrapper) return;
+
+    if (window.localStorage && localStorage.getItem(key) === '1') {
+      wrapper.style.display = 'none';
+      return;
+    }
+
+    var closeButton = wrapper.querySelector('[data-close-announcement]');
+    if (!closeButton) return;
+
+    closeButton.addEventListener('click', function () {
+      wrapper.style.display = 'none';
+      if (window.localStorage) {
+        localStorage.setItem(key, '1');
+      }
+    });
+  })();
+</script>
 
 {% schema %}
 {
