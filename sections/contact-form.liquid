@@ -1,0 +1,241 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- else -%}
+      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+    {%- endif -%}
+    {%- liquid
+      assign contact_form_class = 'isolate'
+      if settings.animations_reveal_on_scroll
+        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+      endif
+    -%}
+    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+      {%- if form.posted_successfully? -%}
+        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+          {{- 'icon-success.svg' | inline_asset_content -}}
+          {{ 'templates.contact.form.post_success' | t }}
+        </h2>
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#ContactForm-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%}
+      <div class="contact__fields">
+
+  <!-- Nombre -->
+  <div class="field">
+    <input
+      class="field__input"
+      type="text"
+      id="ContactForm-name"
+      name="contact[Nombre]"
+      placeholder="Nombre completo"
+      required
+    >
+    <label class="field__label" for="ContactForm-name">
+      Nombre completo
+    </label>
+  </div>
+
+  <!-- Correo -->
+  <div class="field field--with-error">
+    <input
+      type="email"
+      id="ContactForm-email"
+      class="field__input"
+      name="contact[email]"
+      required
+      placeholder="Correo electrónico"
+    >
+    <label class="field__label" for="ContactForm-email">
+      Correo electrónico *
+    </label>
+  </div>
+
+</div>
+
+<!-- Teléfono -->
+<div class="field">
+  <input
+    type="tel"
+    id="ContactForm-phone"
+    class="field__input"
+    name="contact[Numero telefonico]"
+    pattern="[0-9]*"
+    placeholder="Número telefónico"
+    required
+  >
+  <label class="field__label" for="ContactForm-phone">
+    Número telefónico
+  </label>
+</div>
+
+<!-- Ciudad -->
+<div class="field">
+  <input
+    type="text"
+    id="ContactForm-city"
+    class="field__input"
+    name="contact[Ciudad de Mexico]"
+    placeholder="¿De qué ciudad de México nos escribes?"
+    required
+  >
+  <label class="field__label" for="ContactForm-city">
+    Ciudad
+  </label>
+</div>
+
+<!-- Tipo de negocio -->
+<div class="field">
+  <select
+  id="ContactForm-business"
+  class="field__input select-mayoreo"
+  name="contact[Tipo de negocio]"
+  required
+>
+    <option value="">Selecciona tu tipo de negocio</option>
+    <option value="Revendedor de cuchillos">Revendedor de cuchillos</option>
+    <option value="Restaurante">Restaurante</option>
+    <option value="Hotel">Hotel</option>
+    <option value="Distribuidor">Distribuidor</option>
+    <option value="Otro">Otro</option>
+  </select>
+  <label class="field__label" for="ContactForm-business">
+    Tipo de negocio
+  </label>
+</div>
+
+<!-- Comentarios -->
+<div class="field">
+  <textarea
+    rows="6"
+    id="ContactForm-body"
+    class="text-area field__input"
+    name="contact[Comentarios]"
+    placeholder="Cuéntanos más sobre lo que buscas..."
+  ></textarea>
+  <label class="field__label" for="ContactForm-body">
+    Comentarios
+  </label>
+</div>
+      <div class="contact__button">
+        <button type="submit" class="button">
+          {{ 'templates.contact.form.send' | t }}
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "t:sections.contact-form.settings.title.default",
+      "label": "t:sections.contact-form.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact-form.presets.name"
+    }
+  ]
+}
+{% endschema %}

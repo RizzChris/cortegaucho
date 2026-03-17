@@ -1,0 +1,339 @@
+{{ 'video-section.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+.section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+.video-section-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.video-section-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.video-overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  width: 90%;
+  max-width: 900px;
+  color: hsl(36, 25%, 90%);
+}
+
+.video-overlay-content .subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-weight: 400;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  color: hsl(36, 30%, 85%);
+  display: none;
+}
+
+.video-overlay-content .main-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.95);
+  color: hsl(36, 25%, 90%);
+  display: none;
+}
+
+.video-overlay-content .main-heading em {
+  color: hsl(0, 0%, 100%);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.video-overlay-content .description {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  color: hsl(36, 25%, 90%);
+  display: none;
+}
+
+.video-overlay-content .button {
+  font-family: 'Lato', sans-serif;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.875rem 2rem;
+  border: 2px solid hsl(36, 30%, 85%);
+  background: transparent;
+  color: hsl(36, 30%, 85%);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.video-overlay-content .button:hover {
+  background: hsl(40, 65%, 50%);
+  border-color: hsl(40, 65%, 50%);
+  color: hsl(30, 10%, 6%);
+  box-shadow: 0 0 20px hsla(40, 65%, 50%, 0.5);
+}
+
+@media screen and (min-width: 750px) {
+  .video-overlay-content .subtitle {
+    display: block;
+  }
+
+  .video-overlay-content .main-heading {
+    display: block;
+    font-size: 11.25rem;
+    margin-bottom: 3.25rem;
+  }
+  
+  .video-overlay-content .subtitle {
+    font-size: 2.625rem;
+  }
+  
+  .video-overlay-content .description {
+    display: block;
+    font-size: 2.25rem;
+    margin-bottom: 4rem;
+  }
+
+  .video-overlay-content .button {
+    font-size: 1.875rem;
+    padding: 1.875rem 3.75rem;
+    margin-top: 1.25rem;
+  }
+}
+
+.video-mobile {
+  display: block;
+}
+
+.video-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+  .video-mobile {
+    display: none;
+  }
+
+  .video-desktop {
+    display: block;
+  }
+}
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="video-section section-{{ section.id }}-padding {% unless section.settings.full_width %}page-width{% endunless %}">
+
+    <div class="video-section-wrapper">
+      <div class="video-wrapper">
+        {% if section.settings.video_desktop != blank %}
+          <div class="video-desktop">
+            {{
+              section.settings.video_desktop
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true
+            }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.video_mobile != blank %}
+          <div class="video-mobile">
+            {{
+              section.settings.video_mobile
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true
+            }}
+          </div>
+        {% endif %}
+      </div>
+
+      {%- if section.settings.subtitle != blank or section.settings.heading != blank or section.settings.description != blank or section.settings.button_label != blank -%}
+        <div class="video-overlay-content">
+          {%- if section.settings.subtitle != blank -%}
+            <p class="subtitle">{{ section.settings.subtitle }}</p>
+          {%- endif -%}
+          
+          {%- if section.settings.heading != blank -%}
+            <h2 class="main-heading {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+          
+          {%- if section.settings.description != blank -%}
+            <div class="description">
+              {{ section.settings.description }}
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: '#' }}" class="button">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video responsive autoplay",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contenido sobre el video"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título principal",
+      "default": "Forjados con <em>alma y fuego</em>",
+      "info": "Usa <em>texto</em> para resaltar palabras en color blanco"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "default": "h1",
+      "options": [
+        { "value": "h0", "label": "Muy grande" },
+        { "value": "h1", "label": "Grande" },
+        { "value": "h2", "label": "Mediano" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Texto descriptivo",
+      "default": "<p>Cada cuchillo cuenta una historia de tradición argentina, forjado a mano por maestros artesanos con más de 50 años de experiencia.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "VER COLECCIÓN"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "header",
+      "content": "Videos"
+    },
+    {
+      "type": "video",
+      "id": "video_desktop",
+      "label": "Video para escritorio"
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Video para móvil"
+    },
+    {
+      "type": "header",
+      "content": "Diseño"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Ancho completo",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video responsive autoplay"
+    }
+  ]
+}
+{% endschema %}

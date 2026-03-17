@@ -1,0 +1,153 @@
+{
+  "sections": {
+    "video_6j6bNL": {
+      "type": "video",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "subtitle": "TRADICIÓN GAUCHA · ACERO ARTESANAL",
+        "heading": "Forjados con <em>alma y fuego<\/em>",
+        "heading_size": "h1",
+        "description": "<p>Cada cuchillo cuenta una historia de tradición argentina, forjado a mano por maestros artesanos con más de 50 años de herencia.<\/p>",
+        "button_label": "VER COLECCIÓN",
+        "button_link": "\/collections\/all",
+        "video_desktop": "shopify:\/\/files\/videos\/Horizontal.mp4",
+        "video_mobile": "shopify:\/\/files\/videos\/vertical.mp4",
+        "full_width": true,
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_tpdNjr": {
+      "type": "featured-collection",
+      "name": "Destacados",
+      "settings": {
+        "collection": "cuchillos",
+        "products_to_show": 6,
+        "title": "Cuchillos",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 3,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_DcpX9h": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_eYJzV4": {
+          "type": "featured_collection",
+          "settings": { "collection": "cuchillos" }
+        },
+        "featured_collection_CYe7WG": {
+          "type": "featured_collection",
+          "settings": { "collection": "fundas" }
+        },
+        "featured_collection_EaRqmR": {
+          "type": "featured_collection",
+          "settings": { "collection": "cajas-personalizadas" }
+        },
+        "featured_collection_3BrprP": {
+          "type": "featured_collection",
+          "settings": { "collection": "sets" }
+        }
+      },
+      "block_order": [
+        "featured_collection_eYJzV4",
+        "featured_collection_CYe7WG",
+        "featured_collection_EaRqmR",
+        "featured_collection_3BrprP"
+      ],
+      "name": "Productos",
+      "settings": {
+        "title": "Colecciones",
+        "heading_size": "h1",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "color_scheme": "",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "contact_form_hHt8mT": {
+      "type": "contact-form",
+      "custom_css": [],
+      "name": "t:sections.contact-form.presets.name",
+      "settings": {
+        "heading": "Solicitud de Compra por Mayoreo",
+        "heading_size": "h1",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_JnX9wK": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_3HbB6V": {
+          "type": "heading",
+          "settings": {
+            "heading": "DESDE ARGENTINA AL CORAZÓN DE TU PARRILLA",
+            "heading_size": "h1"
+          }
+        },
+        "text_MYF8FN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Corte Gaucho nace de la tradición argentina del asado, <br\/>donde cada corte es un arte. Inspirados en la colección <br\/>de cuchillos artesanales de nuestro abuelo y el rancho <br\/>familiar, traemos a México la auténtica experiencia <br\/>del parrillero argentino.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "button_6FVerQ": {
+          "type": "button",
+          "settings": {
+            "button_label": "NUESTRA HISTORIA",
+            "button_link": "\/pages\/nuestra-historia",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading_3HbB6V", "text_MYF8FN", "button_6FVerQ"],
+      "name": "NUESTRA HISTORIA",
+      "settings": {
+        "height": "small",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "ambient",
+        "content_layout": "overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "video_6j6bNL",
+    "featured_collection_tpdNjr",
+    "collection_list_DcpX9h",
+    "contact_form_hHt8mT",
+    "image_with_text_JnX9wK"
+  ]
+}
