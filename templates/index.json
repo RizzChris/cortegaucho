@@ -1,17 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "video_6j6bNL": {
       "type": "video",
       "name": "t:sections.video.presets.name",
       "settings": {
-        "subtitle": "TRADICIÓN GAUCHA · ACERO ARTESANAL",
-        "heading": "Forjados con <em>alma y fuego<\/em>",
+        "heading": "Forjados con <em>alma y fuego</em>",
         "heading_size": "h1",
-        "description": "<p>Cada cuchillo cuenta una historia de tradición argentina, forjado a mano por maestros artesanos con más de 50 años de herencia.<\/p>",
+        "description": "<p>Cada cuchillo cuenta una historia de tradición argentina, forjado a mano por maestros artesanos con más de 50 años de herencia.</p>",
         "button_label": "VER COLECCIÓN",
-        "button_link": "\/collections\/all",
-        "video_desktop": "shopify:\/\/files\/videos\/Horizontal.mp4",
-        "video_mobile": "shopify:\/\/files\/videos\/vertical.mp4",
+        "button_link": "/collections/all",
+        "video_desktop": "shopify://files/videos/Horizontal.mp4",
+        "video_mobile": "shopify://files/videos/vertical.mp4",
         "full_width": true,
         "color_scheme": "",
         "padding_top": 0,
@@ -52,19 +60,27 @@
       "blocks": {
         "featured_collection_eYJzV4": {
           "type": "featured_collection",
-          "settings": { "collection": "cuchillos" }
+          "settings": {
+            "collection": "cuchillos"
+          }
         },
         "featured_collection_CYe7WG": {
           "type": "featured_collection",
-          "settings": { "collection": "fundas" }
+          "settings": {
+            "collection": "fundas"
+          }
         },
         "featured_collection_EaRqmR": {
           "type": "featured_collection",
-          "settings": { "collection": "cajas-personalizadas" }
+          "settings": {
+            "collection": "cajas-personalizadas"
+          }
         },
         "featured_collection_3BrprP": {
           "type": "featured_collection",
-          "settings": { "collection": "sets" }
+          "settings": {
+            "collection": "sets"
+          }
         }
       },
       "block_order": [
@@ -112,7 +128,7 @@
         "text_MYF8FN": {
           "type": "text",
           "settings": {
-            "text": "<p>Corte Gaucho nace de la tradición argentina del asado, <br\/>donde cada corte es un arte. Inspirados en la colección <br\/>de cuchillos artesanales de nuestro abuelo y el rancho <br\/>familiar, traemos a México la auténtica experiencia <br\/>del parrillero argentino.<\/p>",
+            "text": "<p>Corte Gaucho nace de la tradición argentina del asado, <br/>donde cada corte es un arte. Inspirados en la colección <br/>de cuchillos artesanales de nuestro abuelo y el rancho <br/>familiar, traemos a México la auténtica experiencia <br/>del parrillero argentino.</p>",
             "text_style": "body"
           }
         },
@@ -120,12 +136,16 @@
           "type": "button",
           "settings": {
             "button_label": "NUESTRA HISTORIA",
-            "button_link": "\/pages\/nuestra-historia",
+            "button_link": "/pages/sobre-nosotros",
             "button_style_secondary": false
           }
         }
       },
-      "block_order": ["heading_3HbB6V", "text_MYF8FN", "button_6FVerQ"],
+      "block_order": [
+        "heading_3HbB6V",
+        "text_MYF8FN",
+        "button_6FVerQ"
+      ],
       "name": "NUESTRA HISTORIA",
       "settings": {
         "height": "small",
