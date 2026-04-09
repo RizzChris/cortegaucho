@@ -1,1 +1,115 @@
-{"sections":{"main":{"type":"main-product","blocks":{"text":{"type":"text","settings":{"text":"{{ product.vendor }}","text_style":"body"}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"description":{"type":"description","settings":{}},"share":{"type":"share","settings":{"share_label":"Share"}}},"block_order":["text","title","price","variant_picker","quantity_selector","buy_buttons","description","share"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"medium","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"stacked","mobile_thumbnails":"hide","media_position":"left","image_zoom":"lightbox","hide_variants":false,"enable_video_looping":false,"padding_top":36,"padding_bottom":44}},"related-products":{"type":"related-products","settings":{"heading":"Productos que te podrian interesar","heading_size":"h2","products_to_show":4,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":true,"show_rating":false,"padding_top":36,"padding_bottom":68}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "body"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "custom_liquid_PPNUMe": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"display:none\" class=\"sube-tu-logo-2\">\n        \n<style>.file-upload-container {display: flex;align-items: center;}.file-name {margin-left: 10px;font-style: italic;}</style>\n<div class=\"product-form__input\">\n  <label class=\"form__label\">Sube tu logo</label>\n  <div class=\"file-upload-container\">\n    <input id=\"file-sube-tu-logo\" form=\"{{ 'product-form-' | append: section.id }}\" \n    name=\"properties[Sube tu logo]\"  style=\"display: none;\" type=\"file\"  />\n    <button id=\"button-sube-tu-logo\" class=\"button\">Upload File</button>\n    <p id=\"fileName-sube-tu-logo\" class=\"file-name\">No file chosen</p>\n    </div>\n    <p id=\"errorMessage\" class=\"error-message\" style=\"display: none;margin-top:0;color:red\">Please upload your file(s).</p>\n</div>\n<script>\ndocument.getElementById('file-sube-tu-logo').addEventListener('change', function(event) {\n      const files = event.target.files;\n      let fileName;\n      if (files.length === 0) {fileName = 'No file chosen';} \n      else if (files.length === 1) {fileName = files[0].name;document.getElementById('errorMessage').style.display = 'none'; } \n      else {fileName = files.length + ' files';document.getElementById('errorMessage').style.display = 'none';}\n      document.getElementById('fileName-sube-tu-logo').textContent = fileName;\n  });\n  document.getElementById('button-sube-tu-logo').addEventListener('click', function() {\n    document.getElementById('file-sube-tu-logo').click();\n  });\n</script>\n\n\n\n    </div>\n    <script>\n    document.addEventListener('DOMContentLoaded', () => {\n        const sanitizeClassName = str => str.replace(/[^a-zA-Z0-9\\s]/g, '').replace(/\\s+/g, '-').toLowerCase();\n        const checkCurrentOption = ()=>{\n            const variantSelects = document.querySelector('variant-selects');\n            const currentValues = Array.from(variantSelects.querySelectorAll('select option[selected], fieldset input:checked')).map(el => el.value);\n            const optionValue = \"\"\n            optionsConcerned = [2] \n            required = false\n            selector = \".\" + \"sube-tu-logo-\" + optionValue +  \"2\" \n            selectorInput = selector + \" input\"  + \",\" + selector + \" textarea\" \n            shouldDisplay = optionsConcerned.some(optionIndex => {\n                return currentValues[optionIndex] !== undefined && sanitizeClassName(currentValues[optionIndex]) === optionValue;\n              });\n            document.querySelectorAll(selector).forEach(el =>{\n                if( shouldDisplay){\n                    el.style.display = \"block\"\n                    document.querySelector(selectorInput).setAttribute('form', '{{ 'product-form-' | append: section.id }}')\n                    document.querySelectorAll('.hidden-input-fileupload').forEach(el => el.setAttribute('form', '{{ 'product-form-' | append: section.id }}'))\n                }\n                else{\n                    el.style.display =\"none\"\n                    document.querySelector(selectorInput).setAttribute('form', '');\n                    document.querySelectorAll('.hidden-input-fileupload').forEach(el => el.setAttribute('form', ''))\n                }\n           \n            } );\n            if (required) {\n                const customInput = document.querySelector(selectorInput)\n                if (shouldDisplay) {\n                    customInput.setAttribute('required', 'required');\n                } else {\n                    customInput.removeAttribute('required');\n                }\n            }\n        }\n        checkCurrentOption()\n        document.querySelector(\".product-variant-id\").addEventListener('change', checkCurrentOption)\n    })\n    </script>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text",
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "custom_liquid_PPNUMe",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Productos que te podrian interesar",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 68
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}
