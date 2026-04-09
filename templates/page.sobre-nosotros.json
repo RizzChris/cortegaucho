@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "about": {
+      "type": "about-us-story",
+      "settings": {
+        "eyebrow": "Corte Gaucho",
+        "heading": "Nuestra historia",
+        "heading_size": "h1",
+        "lead": "<p>Desde Argentina al corazón de tu parrilla.</p>",
+        "story": "<p>Corte Gaucho nace de la tradición argentina del asado, donde cada corte es un arte. Inspirados en la colección de cuchillos artesanales de nuestro abuelo y el rancho familiar, traemos a México una experiencia auténtica y con identidad propia.</p>",
+        "mission_title": "Misión",
+        "mission_text": "Acercar piezas auténticas que elevan cada experiencia al fuego.",
+        "vision_title": "Visión",
+        "vision_text": "Ser la referencia en México para la cultura parrillera con raíz argentina.",
+        "values_title": "Valores",
+        "values_text": "Tradición, honestidad en materiales, detalle artesanal y pasión por el asado.",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": ["about"]
+}

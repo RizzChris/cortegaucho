@@ -3615,3 +3615,82 @@ details-disclosure > details {
   font-size: 16px;
   line-height: normal;
 }
+
+/* ============================================
+   CG PRODUCT THUMBS - Galeria dinamica
+   ============================================ */
+
+.cg-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  padding: 8px;
+}
+
+/* En mobile va horizontal abajo */
+@media screen and (max-width: 749px) {
+  .cg-thumbs {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 8px 0;
+  }
+}
+
+.cg-thumb {
+  width: 72px;
+  height: 72px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+  padding: 0;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cg-thumb:hover {
+  border-color: #8a7a6a;
+  opacity: 1;
+}
+
+.cg-thumb--active {
+  border-color: #3d2b1f;
+}
+
+.cg-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Etiqueta pequena debajo de la miniatura dinamica */
+.cg-thumb__label {
+  display: block;
+  font-size: 9px;
+  text-align: center;
+  color: #666;
+  line-height: 1.2;
+  padding: 2px 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 72px;
+}
+
+/* Animacion al cambiar imagen dinamica */
+.cg-thumb--dynamic.cg-thumb--updating img {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.cg-thumb--dynamic img {
+  transition: opacity 0.15s ease;
+  opacity: 1;
+}

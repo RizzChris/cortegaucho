@@ -1,0 +1,71 @@
+{% comment %}
+  CG Product Thumbs - Galeria de miniaturas dinamica por variante
+  Renderiza entre 1 y 3 miniaturas segun el tipo de producto.
+  Las miniaturas fijas vienen de metafields.
+  La miniatura dinamica se actualiza via JS cuando cambia la variante.
+{% endcomment %}
+
+{% assign thumb_dynamic = product.metafields.cortegaucho.thumb_dynamic | default: 'none' %}
+{% assign thumb_1 = product.metafields.cortegaucho.thumb_1 %}
+{% assign thumb_2 = product.metafields.cortegaucho.thumb_2 %}
+
+<div
+  class="cg-thumbs"
+  data-dynamic="{{ thumb_dynamic }}"
+  data-product-type="{{ product.type | downcase | replace: ' ', '-' }}"
+>
+
+  {%- comment -%} MINIATURA 1 - siempre presente si hay imagen {%- endcomment -%}
+  {% if thumb_1 != blank %}
+    <button
+      class="cg-thumb cg-thumb--fixed cg-thumb--active"
+      data-index="1"
+      aria-label="Ver foto principal"
+      type="button"
+    >
+      <img
+        src="{{ thumb_1 }}"
+        alt="{{ product.title }} - Vista frontal"
+        loading="eager"
+        width="80" height="80"
+      >
+    </button>
+  {% endif %}
+
+  {%- comment -%} MINIATURA 2 - presente si hay segunda imagen fija {%- endcomment -%}
+  {% if thumb_2 != blank %}
+    <button
+      class="cg-thumb cg-thumb--fixed"
+      data-index="2"
+      aria-label="Ver detalle"
+      type="button"
+    >
+      <img
+        src="{{ thumb_2 }}"
+        alt="{{ product.title }} - Detalle"
+        loading="lazy"
+        width="80" height="80"
+      >
+    </button>
+  {% endif %}
+
+  {%- comment -%} MINIATURA 3 - solo si hay opcion dinamica {%- endcomment -%}
+  {% if thumb_dynamic != 'none' %}
+    <button
+      class="cg-thumb cg-thumb--dynamic"
+      data-index="3"
+      aria-label="Ver con accesorio seleccionado"
+      style="display: none;"
+      type="button"
+    >
+      <img
+        src="{{ thumb_1 | default: thumb_2 }}"
+        alt="Accesorio seleccionado"
+        loading="lazy"
+        width="80" height="80"
+      >
+      <span class="cg-thumb__label"></span>
+    </button>
+  {% endif %}
+
+</div>

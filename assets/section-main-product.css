@@ -62,14 +62,14 @@ product-info {
 
 @media screen and (min-width: 990px) {
   .product--large:not(.product--no-media) .product__media-wrapper {
-    max-width: 65%;
-    width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 58%;
+    width: calc(58% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media) .product__info-wrapper {
     padding: 0 0 0 4rem;
-    max-width: 35%;
-    width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: 42%;
+    width: calc(42% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
   .product--large:not(.product--no-media).product--right .product__info-wrapper {
@@ -86,6 +86,37 @@ product-info {
   .product--small:not(.product--no-media) .product__media-wrapper {
     max-width: 45%;
     width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+}
+
+.product-form__input {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Removed block behavior from fieldset to allow flex wrap layout */
+.product-form__input--pill {
+  /* Flex wrap layout is applied via component-product-variant-picker.css */
+}
+
+.product-form__input--pill input[type='radio'] + label {
+  max-width: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .product__info-container {
+    max-width: 100%;
+  }
+
+  .product__info-container > * + * {
+    margin: 1.1rem 0;
+  }
+
+  .product__info-container .product-form,
+  .product__info-container .product__description,
+  .product__info-container .icon-with-text {
+    margin: 1.4rem 0;
   }
 }
 

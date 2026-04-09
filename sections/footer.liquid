@@ -77,17 +77,27 @@
 }
 
 .footer__list-social {
-  margin-top: 20px;
+  margin-top: 30px;
+  justify-content: center !important;
+  gap: 20px;
+  padding: 0;
 }
 
 .footer__list-social li a {
   border: 1px solid #555;
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 !important;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.footer__list-social li a:hover {
+  border-color: #fff;
+  transform: translateY(-2px);
 }
 
 /* Parte inferior */
@@ -121,14 +131,14 @@
   }
 }
 
-/* Mover iconos sociales más hacia la izquierda */
+/* Mover iconos sociales */
 .footer-block__brand-info {
   text-align: left;
 }
 
-
 .footer__list-social {
-  margin-left: -40px;
+  /* Se removió el margin-left: -40px para permitir el centrado flex simétrico */
+  margin-left: 0 !important;
 }
 
 {%- endstyle -%}

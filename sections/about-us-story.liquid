@@ -1,0 +1,250 @@
+{%- style -%}
+  .about-us-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .about-us-{{ section.id }} .about-us__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    align-items: center;
+  }
+
+  .about-us-{{ section.id }} .about-us__eyebrow {
+    font-size: 1.2rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    opacity: 0.8;
+  }
+
+  .about-us-{{ section.id }} .about-us__title {
+    margin: 0 0 1.4rem;
+    line-height: 1.05;
+  }
+
+  .about-us-{{ section.id }} .about-us__lead {
+    margin-bottom: 1.8rem;
+    font-size: 1.9rem;
+    line-height: 1.4;
+  }
+
+  .about-us-{{ section.id }} .about-us__story {
+    font-size: 1.6rem;
+    line-height: 1.7;
+  }
+
+  .about-us-{{ section.id }} .about-us__media {
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+    min-height: 28rem;
+  }
+
+  .about-us-{{ section.id }} .about-us__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-us-{{ section.id }} .about-us__cards {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .about-us-{{ section.id }} .about-us__card {
+    border: 0.1rem solid rgba(var(--color-foreground), 0.14);
+    border-radius: 1rem;
+    padding: 1.8rem;
+    background: rgba(var(--color-background), 0.7);
+  }
+
+  .about-us-{{ section.id }} .about-us__card h3 {
+    margin: 0 0 0.8rem;
+    font-size: 2rem;
+  }
+
+  .about-us-{{ section.id }} .about-us__card p {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .about-us-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .about-us-{{ section.id }} .about-us__grid {
+      grid-template-columns: 1.05fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-us-{{ section.id }} .about-us__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.8rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="about-us-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="about-us__grid">
+      <div class="about-us__media">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+        {%- endif -%}
+      </div>
+
+      <div class="about-us__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="about-us__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h1 class="about-us__title {{ section.settings.heading_size }}">{{ section.settings.heading }}</h1>
+        {%- if section.settings.lead != blank -%}
+          <div class="about-us__lead rte">{{ section.settings.lead }}</div>
+        {%- endif -%}
+        {%- if section.settings.story != blank -%}
+          <div class="about-us__story rte">{{ section.settings.story }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="about-us__cards">
+      <article class="about-us__card">
+        <h3>{{ section.settings.mission_title }}</h3>
+        <p>{{ section.settings.mission_text }}</p>
+      </article>
+      <article class="about-us__card">
+        <h3>{{ section.settings.vision_title }}</h3>
+        <p>{{ section.settings.vision_text }}</p>
+      </article>
+      <article class="about-us__card">
+        <h3>{{ section.settings.values_title }}</h3>
+        <p>{{ section.settings.values_text }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sobre nosotros",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen principal"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior",
+      "default": "Corte Gaucho"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Título",
+      "default": "Nuestra historia"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Tamaño del título",
+      "default": "h1",
+      "options": [
+        { "value": "h0", "label": "Muy grande" },
+        { "value": "h1", "label": "Grande" },
+        { "value": "h2", "label": "Mediano" }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "lead",
+      "label": "Resumen",
+      "default": "<p>Desde Argentina al corazón de tu parrilla.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "story",
+      "label": "Historia",
+      "default": "<p>Corte Gaucho nace de la tradición argentina del asado. Seleccionamos cuchillos y accesorios con identidad, calidad y carácter para quienes viven la parrilla como ritual.</p>"
+    },
+    {
+      "type": "text",
+      "id": "mission_title",
+      "label": "Título misión",
+      "default": "Misión"
+    },
+    {
+      "type": "text",
+      "id": "mission_text",
+      "label": "Texto misión",
+      "default": "Acercar piezas auténticas que elevan cada experiencia al fuego."
+    },
+    {
+      "type": "text",
+      "id": "vision_title",
+      "label": "Título visión",
+      "default": "Visión"
+    },
+    {
+      "type": "text",
+      "id": "vision_text",
+      "label": "Texto visión",
+      "default": "Ser la referencia en México para la cultura parrillera con raíz argentina."
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Título valores",
+      "default": "Valores"
+    },
+    {
+      "type": "text",
+      "id": "values_text",
+      "label": "Texto valores",
+      "default": "Tradición, honestidad en materiales, detalle artesanal y pasión por el asado."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding superior",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding inferior",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sobre nosotros"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,223 @@
+{% comment %}
+  Custom Stock Validation & Modal
+  Limits quantity to available stock and shows a popup.
+{% endcomment %}
+
+<style>
+.cg-stock-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cg-stock-modal[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cg-stock-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.cg-stock-modal__content {
+  position: relative;
+  background: rgb(var(--color-background));
+  padding: 3rem;
+  border-radius: var(--popup-corner-radius, 1rem);
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  z-index: 10000;
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+}
+
+.cg-stock-modal[data-open="true"] .cg-stock-modal__content {
+  transform: scale(1);
+}
+
+.cg-stock-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 2.8rem;
+  cursor: pointer;
+  line-height: 1;
+  color: rgb(var(--color-foreground));
+  padding: 0;
+}
+
+.cg-stock-modal__title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.cg-stock-modal__text {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+.cg-stock-modal__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.cg-stock-modal__btn {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: 1rem 2rem;
+  min-height: 4.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cg-stock-modal__btn--whatsapp {
+  background-color: #25D366;
+  color: #fff;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.cg-stock-modal__btn--whatsapp:hover {
+  background-color: #128C7E;
+  color: #fff;
+}
+</style>
+
+<div id="cg-stock-modal" class="cg-stock-modal">
+  <div class="cg-stock-modal__overlay" data-close-modal></div>
+  <div class="cg-stock-modal__content">
+    <button type="button" class="cg-stock-modal__close" data-close-modal aria-label="Cerrar">&times;</button>
+    <h3 class="cg-stock-modal__title h3">Aviso de Stock</h3>
+    <p class="cg-stock-modal__text">
+      Llegaste al stock máximo disponible (<strong id="cg-stock-max-qty">0</strong> unidades).<br><br>
+      Si necesitas más unidades, el pedido adicional tardará más tiempo en producirse y puede tener un retraso en la entrega.
+    </p>
+    <p class="cg-stock-modal__text">
+      <strong>¿Necesitas urgente? Contáctanos.</strong>
+    </p>
+    <div class="cg-stock-modal__actions">
+      <a href="https://wa.me/5491137975859" target="_blank" rel="noopener noreferrer" class="button cg-stock-modal__btn cg-stock-modal__btn--whatsapp">
+        <svg style="margin-right:0.8rem;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.996 0C5.372 0 0 5.373 0 11.999c0 2.12.553 4.184 1.603 6.002L.378 23.473l5.63-1.48c1.782.972 3.81 1.485 5.895 1.485h.005c6.621 0 11.996-5.373 11.996-12.001C23.904 5.373 18.618 0 11.996 0zm0 21.485c-1.859 0-3.665-.494-5.263-1.428l-.377-.224-3.916 1.026 1.047-3.813-.245-.39A9.972 9.972 0 011.997 12c0-5.514 4.485-10 10.001-10 5.513 0 9.998 4.486 9.998 10 0 5.515-4.485 10-10 10zm5.485-7.487c-.3-.15-1.782-.88-2.057-.98-.276-.101-.476-.151-.677.151-.2.302-.777.98-.953 1.181-.176.2-.351.226-.652.076-.301-.15-1.272-.468-2.423-1.32-.897-.663-1.503-1.484-1.68-1.785-.176-.302-.019-.465.132-.614.136-.134.3-.351.452-.527.15-.176.201-.301.301-.502.1-.2.05-.376-.025-.526-.076-.151-.676-1.63-.925-2.23-.242-.584-.486-.505-.675-.515-.176-.008-.376-.008-.577-.008s-.527.075-.802.376c-.276.301-1.053 1.03-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.201 2.122 3.238 5.14 4.542.718.31 1.28.494 1.716.634.721.23 1.375.197 1.895.12.58-.086 1.782-.727 2.033-1.431.25-.702.25-1.304.175-1.43z"/></svg> 
+        Contactar con un asesor
+      </a>
+      <button type="button" class="button button--secondary cg-stock-modal__btn" data-close-modal>Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Save all variants inventory centrally so our JS can read it on-demand
+  window.cgVariantInventory = {
+    {% for variant in product.variants %}
+      "{{ variant.id }}": {
+        "qty": {{ variant.inventory_quantity | default: 0 }},
+        "policy": "{{ variant.inventory_policy }}",
+        "management": "{{ variant.inventory_management }}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('cg-stock-modal');
+    if (!modal) return;
+    
+    const maxQtySpan = document.getElementById('cg-stock-max-qty');
+    const closeBtns = modal.querySelectorAll('[data-close-modal]');
+    
+    const closeModal = () => modal.removeAttribute('data-open');
+    const showModal = (maxStock) => {
+      if(maxQtySpan) maxQtySpan.textContent = maxStock;
+      modal.setAttribute('data-open', 'true');
+    };
+
+    // Close listeners (X, background overlay, and button)
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.hasAttribute('data-open')) closeModal();
+    });
+
+    const getCurrentVariantStock = () => {
+      // Find the current hidden variant input (standard Dawn logic)
+      const variantInput = document.querySelector('form[action*="/cart/add"] input[name="id"]');
+      if (!variantInput || !window.cgVariantInventory) return null;
+      
+      const variantId = variantInput.value;
+      const inventory = window.cgVariantInventory[variantId];
+      if (!inventory) return null;
+
+      // Ensure shopify tracks it, and it blocks out of stock ("deny")
+      if (inventory.management === 'shopify' && inventory.policy === 'deny') {
+        return inventory.qty > 0 ? inventory.qty : 0;
+      }
+      return null; // Means unlimited stock or allows overselling
+    };
+
+    // 1. Intercept "+" button click in capturing phase before Dawn processes it
+    document.addEventListener('click', (e) => {
+      const plusBtn = e.target.closest('button[name="plus"], button.quantity__button[name="plus"]');
+      if (!plusBtn) return;
+      
+      const container = plusBtn.closest('quantity-input, .quantity');
+      if (!container) return;
+      
+      const input = container.querySelector('input.quantity__input');
+      if (!input) return;
+
+      const maxStock = getCurrentVariantStock();
+      if (maxStock === null) return;
+
+      const currentValue = parseInt(input.value) || 0;
+      if (currentValue >= maxStock) {
+        // Prevent Dawn theme logic from incrementing
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        input.value = maxStock; // Keep it clamped
+        showModal(maxStock);
+      }
+    }, true); 
+
+    // 2. Intercept manual input typing in capturing phase
+    document.addEventListener('input', (e) => {
+      if (!e.target.matches('input.quantity__input')) return;
+      
+      const maxStock = getCurrentVariantStock();
+      if (maxStock === null) return;
+
+      let currentValue = parseInt(e.target.value) || 0;
+      if (currentValue > maxStock) {
+        e.target.value = maxStock; // Clamp immediately
+        showModal(maxStock);
+      }
+    }, true);
+  });
+</script>

@@ -1,0 +1,39 @@
+<div class="cg-logo-upload hidden" data-cg-logo-upload data-product-form-id="{{ product_form_id }}">
+  <div class="cg-logo-upload__header-row">
+    <span class="cg-logo-upload__label">Personalización</span>
+    
+    <button type="button" class="cg-logo-upload__btn" data-cg-file-btn>
+      Subir Logo
+    </button>
+    <span class="cg-logo-upload__filename" data-cg-file-name></span>
+
+    <input
+      id="CgLogoFile-{{ section_id }}"
+      class="cg-logo-upload__file-input"
+      name="properties[Logo archivo]"
+      type="file"
+      accept=".svg,.png,.jpg,.jpeg"
+      disabled
+    >
+  </div>
+
+  <p class="cg-logo-upload__error hidden" data-cg-file-error>
+    Por favor sube un archivo (SVG, PNG o JPG) para continuar.
+  </p>
+
+  <div class="product-form__input cg-logo-upload__instructions">
+    <label class="form__label" for="CgLogoInstructions-{{ section_id }}">
+      Instrucciones de personalizacion (max. 80 caracteres)
+    </label>
+
+    <input
+      id="CgLogoInstructions-{{ section_id }}"
+      class="field__input cg-logo-upload__input"
+      name="properties[Logo instrucciones]"
+      type="text"
+      maxlength="80"
+      placeholder="Ej: Iniciales J.P. o fecha especial..."       
+      disabled
+    >
+  </div>
+</div>

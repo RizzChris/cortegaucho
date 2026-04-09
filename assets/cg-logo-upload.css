@@ -1,0 +1,95 @@
+.cg-logo-upload {
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.cg-logo-upload__header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.cg-logo-upload__label {
+  font-size: 1.4rem;
+  color: rgb(var(--color-foreground));
+  font-weight: 500;
+}
+
+.cg-logo-upload__btn {
+  background-color: #3e261d;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.6rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.cg-logo-upload__btn:hover {
+  opacity: 0.85;
+}
+
+.cg-logo-upload__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cg-logo-upload__filename {
+  font-size: 1.2rem;
+  color: rgba(var(--color-foreground), 0.85);
+  max-width: 20rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cg-logo-upload__filename:empty {
+  display: none;
+}
+
+.cg-logo-upload__error {
+  margin: -1rem 0 1.5rem;
+  color: rgb(190, 39, 39);
+  font-size: 1.2rem;
+}
+
+.cg-logo-upload__instructions {
+  margin-top: 0;
+  max-width: 100% !important;
+}
+
+.cg-logo-upload__instructions .form__label {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: rgb(var(--color-foreground));
+  text-transform: none;
+  letter-spacing: normal;
+  display: block;
+}
+
+.cg-logo-upload__input {
+  background-color: transparent;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 0.6rem;
+  padding: 1.2rem 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  font-size: 1.4rem;
+}
+
+.cg-logo-upload__input::placeholder {
+  opacity: 0.6 !important;
+  color: rgba(var(--color-foreground), 0.7);
+  font-style: italic;
+}
+
