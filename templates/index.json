@@ -81,20 +81,27 @@
           "settings": {
             "collection": "sets"
           }
+        },
+        "featured_collection_idFn6L": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "arma-tu-set"
+          }
         }
       },
       "block_order": [
         "featured_collection_eYJzV4",
         "featured_collection_CYe7WG",
         "featured_collection_EaRqmR",
-        "featured_collection_3BrprP"
+        "featured_collection_3BrprP",
+        "featured_collection_idFn6L"
       ],
       "name": "Productos",
       "settings": {
         "title": "Colecciones",
         "heading_size": "h1",
         "image_ratio": "adapt",
-        "columns_desktop": 2,
+        "columns_desktop": 3,
         "color_scheme": "",
         "show_view_all": true,
         "columns_mobile": "1",
