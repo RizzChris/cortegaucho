@@ -1,71 +1,102 @@
 {% comment %}
-  CG Product Thumbs - Galeria de miniaturas dinamica por variante
-  Renderiza entre 1 y 3 miniaturas segun el tipo de producto.
-  Las miniaturas fijas vienen de metafields.
-  La miniatura dinamica se actualiza via JS cuando cambia la variante.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Corte Gaucho — Dynamic Thumbnail Gallery
+  Archivo: snippets/cg-product-thumbs.liquid
+
+  Cuadro 1 → cortegaucho.thumb_1 (metafield) — cuchillo, siempre fijo
+  Cuadro 2 → cortegaucho.thumb_2 (metafield) — mango, fijo (oculto en Trinchetes)
+  Cuadro 3 → variant.featured_image — funda, cambia con cada variante
+  Cuadro 4 → variant.featured_image — logo, visible solo si option3 contiene "logotipo"
+  Cuadro 5 → variant.featured_image — caja, visible solo si option3 contiene "caja"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {% endcomment %}
 
-{% assign thumb_dynamic = product.metafields.cortegaucho.thumb_dynamic | default: 'none' %}
-{% assign thumb_1 = product.metafields.cortegaucho.thumb_1 %}
-{% assign thumb_2 = product.metafields.cortegaucho.thumb_2 %}
+{%- assign cg_thumb1 = product.metafields.cortegaucho.thumb_1.value -%}
+{%- assign cg_thumb2 = product.metafields.cortegaucho.thumb_2.value -%}
 
-<div
-  class="cg-thumbs"
-  data-dynamic="{{ thumb_dynamic }}"
-  data-product-type="{{ product.type | downcase | replace: ' ', '-' }}"
->
+{%- comment %} Detectar si el producto es Trinchete para ocultar cuadro 2 {%- endcomment -%}
+{%- assign cg_is_trinchete = false -%}
+{%- if product.type == 'Trinchete' or product.tags contains 'trinchete' -%}
+  {%- assign cg_is_trinchete = true -%}
+{%- endif -%}
 
-  {%- comment -%} MINIATURA 1 - siempre presente si hay imagen {%- endcomment -%}
-  {% if thumb_1 != blank %}
-    <button
-      class="cg-thumb cg-thumb--fixed cg-thumb--active"
-      data-index="1"
-      aria-label="Ver foto principal"
-      type="button"
-    >
-      <img
-        src="{{ thumb_1 }}"
-        alt="{{ product.title }} - Vista frontal"
-        loading="eager"
-        width="80" height="80"
-      >
-    </button>
-  {% endif %}
+{%- comment %} Imagen inicial: variante seleccionada o primera variante disponible {%- endcomment -%}
+{%- assign cg_variant_img = selected_variant.featured_image.src
+    | default: product.variants.first.featured_image.src -%}
 
-  {%- comment -%} MINIATURA 2 - presente si hay segunda imagen fija {%- endcomment -%}
-  {% if thumb_2 != blank %}
-    <button
-      class="cg-thumb cg-thumb--fixed"
-      data-index="2"
-      aria-label="Ver detalle"
-      type="button"
-    >
-      <img
-        src="{{ thumb_2 }}"
-        alt="{{ product.title }} - Detalle"
-        loading="lazy"
-        width="80" height="80"
-      >
-    </button>
-  {% endif %}
+{%- comment %} Leer option3 para decidir visibilidad de cuadros 4 y 5 {%- endcomment -%}
+{%- assign cg_option3 = selected_variant.option3 | default: '' | downcase -%}
+{%- assign cg_show_logo = false -%}
+{%- assign cg_show_caja = false -%}
+{%- if cg_option3 contains 'logotipo' -%}{%- assign cg_show_logo = true -%}{%- endif -%}
+{%- if cg_option3 contains 'caja'     -%}{%- assign cg_show_caja = true -%}{%- endif -%}
 
-  {%- comment -%} MINIATURA 3 - solo si hay opcion dinamica {%- endcomment -%}
-  {% if thumb_dynamic != 'none' %}
-    <button
-      class="cg-thumb cg-thumb--dynamic"
-      data-index="3"
-      aria-label="Ver con accesorio seleccionado"
-      style="display: none;"
-      type="button"
-    >
-      <img
-        src="{{ thumb_1 | default: thumb_2 }}"
-        alt="Accesorio seleccionado"
-        loading="lazy"
-        width="80" height="80"
-      >
-      <span class="cg-thumb__label"></span>
-    </button>
-  {% endif %}
+{%- comment %} Pasar datos de todas las variantes al JS para que pueda
+    leer featured_image sin llamadas extra a la API {%- endcomment -%}
+<script>
+  window.CG_THUMBS = {
+    isTrinchete: {{ cg_is_trinchete | json }},
+    allVariants: {{ product.variants | json }}
+  };
+</script>
+
+<div class="cg-thumbs-wrapper" data-cg-thumbs>
+
+  {%- comment %} ── Cuadro 1: Cuchillo — siempre fijo ── {%- endcomment -%}
+  <div class="cg-thumb cg-thumb--static{% if cg_thumb1 == blank %} cg-hidden{% endif %}"
+       id="cg-thumb-1">
+    {%- if cg_thumb1 != blank -%}
+      <img src="{{ cg_thumb1 }}"
+           alt="{{ product.title }} — cuchillo"
+           loading="lazy" width="80" height="80">
+    {%- endif -%}
+  </div>
+
+  {%- comment %} ── Cuadro 2: Mango — oculto si es Trinchete o no tiene imagen ── {%- endcomment -%}
+  <div class="cg-thumb cg-thumb--static{% if cg_thumb2 == blank or cg_is_trinchete %} cg-hidden{% endif %}"
+       id="cg-thumb-2">
+    {%- if cg_thumb2 != blank and cg_is_trinchete == false -%}
+      <img src="{{ cg_thumb2 }}"
+           alt="{{ product.title }} — mango"
+           loading="lazy" width="80" height="80">
+    {%- endif -%}
+  </div>
+
+  {%- comment %} ── Cuadro 3: Funda — cambia con la variante seleccionada ── {%- endcomment -%}
+  <div class="cg-thumb cg-thumb--dynamic{% if cg_variant_img == blank %} cg-hidden{% endif %}"
+       id="cg-thumb-dynamic">
+    <img id="cg-img-funda"
+         src="{{ cg_variant_img | default: '' }}"
+         alt="{{ selected_variant.title | default: product.title }} — funda"
+         loading="lazy" width="80" height="80"
+         {% if cg_variant_img == blank %}style="display:none"{% endif %}>
+  </div>
+
+  {%- comment %} ── Cuadro 4: Logo — visible solo cuando option3 incluye "logotipo" ── {%- endcomment -%}
+  <div class="cg-thumb cg-thumb--logo{% unless cg_show_logo %} cg-hidden{% endunless %}"
+       id="cg-thumb-logo">
+    <img id="cg-img-logo"
+         src="{{ cg_variant_img | default: '' }}"
+         alt="Con logotipo"
+         loading="lazy" width="80" height="80">
+    <span class="cg-thumb__badge">Logo</span>
+  </div>
+
+  {%- comment %} ── Cuadro 5: Caja — visible solo cuando option3 incluye "caja" ── {%- endcomment -%}
+  <div class="cg-thumb cg-thumb--caja{% unless cg_show_caja %} cg-hidden{% endunless %}"
+       id="cg-thumb-caja">
+    <img id="cg-img-caja"
+         src="{{ cg_variant_img | default: '' }}"
+         alt="Con caja"
+         loading="lazy" width="80" height="80">
+    <span class="cg-thumb__badge">Caja</span>
+  </div>
 
 </div>
+
+{%- comment %} ── Mensaje de múltiples logos (aparece junto al cuadro 4) ── {%- endcomment -%}
+<p class="cg-multi-logo-msg{% unless cg_show_logo %} cg-hidden{% endunless %}"
+   id="cg-multi-logo-msg">
+  ¿Deseas varios cuchillos con distintos logos?
+  <a href="/pages/contacto">Contacta con un asesor</a>
+</p>

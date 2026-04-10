@@ -3693,4 +3693,141 @@ details-disclosure > details {
 .cg-thumb--dynamic img {
   transition: opacity 0.15s ease;
   opacity: 1;
+}/* =============================================================================
+   Corte Gaucho — Dynamic Thumbnail Gallery
+   Pegar al final de: assets/base.css
+   ============================================================================= */
+
+/* ── Utilidad: ocultar elementos ───────────────────────────────────────────── */
+.cg-hidden {
+  display: none !important;
+}
+
+/* ── Wrapper: columna izquierda con los 5 cuadros ──────────────────────────── */
+.cg-thumbs-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+/* ── Cuadro base ───────────────────────────────────────────────────────────── */
+.cg-thumb {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border: 2px solid #1a1a1a;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cg-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Cuadros estáticos: cuchillo y mango (no interactivos) ─────────────────── */
+.cg-thumb--static {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Cuadro 3: Funda — borde dorado para distinguirlo ─────────────────────── */
+.cg-thumb--dynamic {
+  border-color: #8b6914;
+}
+
+.cg-thumb--dynamic::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #8b6914;
+  z-index: 1;
+}
+
+/* ── Cuadro 4: Logo — borde azul oscuro ────────────────────────────────────── */
+.cg-thumb--logo {
+  border-color: #1a3a5c;
+}
+
+.cg-thumb--logo::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #1a3a5c;
+  z-index: 1;
+}
+
+/* ── Cuadro 5: Caja — borde verde oscuro ───────────────────────────────────── */
+.cg-thumb--caja {
+  border-color: #1a4a2a;
+}
+
+.cg-thumb--caja::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #1a4a2a;
+  z-index: 1;
+}
+
+/* ── Badge de texto dentro del cuadro (esquina inferior) ──────────────────── */
+.cg-thumb__badge {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 1px 0;
+  pointer-events: none;
+}
+
+/* ── Mensaje de múltiples logos ────────────────────────────────────────────── */
+.cg-multi-logo-msg {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #555;
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+.cg-multi-logo-msg a {
+  color: #1a3a5c;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.cg-multi-logo-msg a:hover {
+  color: #8b6914;
+}
+
+/* ── Responsive: cuadros ligeramente más grandes en desktop ────────────────── */
+@media screen and (min-width: 990px) {
+  .cg-thumb {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ── Accesibilidad: sin animaciones si el usuario lo prefiere ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cg-thumb img {
+    transition: none !important;
+  }
 }

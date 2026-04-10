@@ -18,6 +18,14 @@ if (!customElements.get('product-form')) {
       }
 
       onSubmitHandler(evt) {
+        // [CorteGaucho] Fix: Shopify's cart/add AJAX API cannot process file attachments.
+        // If the user has selected a file to upload, we MUST let the browser submit 
+        // the form synchronously so the file gets attached properly to the order.
+        const hasFileToUpload = Array.from(this.form.querySelectorAll('input[type="file"]')).some(input => input.files && input.files.length > 0);
+        if (hasFileToUpload) {
+          return; // Let the native HTML form sumbission handle it (bypasses AJAX)
+        }
+
         evt.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
