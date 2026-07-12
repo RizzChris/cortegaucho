@@ -111,8 +111,8 @@
           {%- when 'social_icon' -%}
             <div class="email-signup-banner__social" {{ block.shopify_attributes }}>
               {%- if settings.social_instagram_link != blank -%}
-                <a href="{{ settings.social_instagram_link }}" class="link" aria-label="Instagram" target="_blank" rel="noopener">
-                  {%- render 'icon-instagram' -%}
+                <a href="{{ settings.social_instagram_link }}" class="link svg-wrapper" aria-label="Instagram" target="_blank" rel="noopener">
+                  {{- 'icon-instagram.svg' | inline_asset_content -}}
                 </a>
               {%- endif -%}
             </div>
@@ -369,8 +369,6 @@
   ]
 }
 {% endschema %}
-
-
 {% comment %} -{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
 {{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
